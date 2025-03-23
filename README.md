@@ -161,5 +161,5 @@ details.
     
 ## Reference
 This project was inspired by the following guides and open source solutions:
- - [How to Create a Python SIEM System Using AI and LLMs for Log Analysis and Anomaly Detection by Chaitanya Rahalkar,](https://www.freecodecamp.org/news/how-to-create-a-python-siem-system-using-ai-and-llms/)
- - [ STRESSED - A Security Log Analysis System by dottxt-ai.](https://github.com/dottxt-ai/demos/tree/main/logs)
+ - [Create a Python SIEM System Using AI and LLMs for Log Analysis and Anomaly Detection](https://www.freecodecamp.org/news/how-to-create-a-python-siem-system-using-ai-and-llms/) by Chaitanya Rahalkar;
+ - [STRESSED - A Security Log Analysis System](https://github.com/dottxt-ai/demos/tree/main/logs) by dottxt-ai.
