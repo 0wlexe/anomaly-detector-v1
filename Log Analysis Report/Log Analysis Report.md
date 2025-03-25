@@ -47,11 +47,18 @@ Login Type: explicit
 | 189.201.235.241 	| 13 	          | 2022-02-22 17:15:28 	| 2022-02-22 17:16:22 	| web     	    |
 
 
-### 3. Most Accessed Resources
-| Resource | Access Count |
-|----------|-------------|
-| /example1 | [count] |
-| /example2 | [count] |
+### 3. User agent Modifications 
+
+| User Agent                                                                                                                               | IP Address      | First Seen | Last Seen |
+|------------------------------------------------------------------------------------------------------------------------------------------|-----------------|------------|-----------|
+| MercadoPago-iOS%2F2.249...iPhone15%2C2                                                                                                   | 200.159.9.139   | 01:55      | 01:58     |
+| MercadoPago-iOS%2F2.252...iPhone15%2C2…                                                                                                  | 189.201.235.241 | 11:22      | 11:23     |
+| MercadoPago-iOS%2F2.251...iPhone15%2C2…                                                                                                  | 189.201.234.220 | 11:38      | 11:41     |
+| MercadoPago-iOS%2F2.251...iPhone15%2C2…                                                                                                  | 189.201.235.176 | 12:12      | 12:17     |
+| MercadoPago-iOS%2F2.251...iPhone15%2C2…                                                                                                  | 189.201.234.8   | 12:31      | 12:31     |
+| Mozilla/5.0 (iPhone; CPU iPhone OS 16_2 like Mac OS X)  AppleWebKit/605.1.15 (KHTML, likeGecko) Version/16.2 Mobile/15E148 Safari/604.1  | 189.201.235.241 | 17:15      | 17:16     |
+| MercadoPago-iOS%2F2.251...iPhone15%2C2…                                                                                                  | 189.201.235.131 | 17:36      | 17:36     |
+| MercadoPago-iOS%2F2.251...iPhone15%2C2…                                                                                                  | 189.96.19.153   | 21:48      | 21:48     |
 
 ### 4. Error Patterns
 | Error Code | Count |
