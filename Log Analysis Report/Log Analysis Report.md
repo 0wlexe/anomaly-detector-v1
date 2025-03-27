@@ -29,18 +29,21 @@ suspicious change in the service level.
 ![screenshot](imgs/02_app_sl_change_anom.png)
 
 
-
-
-
 A security measurement `ato_protection_addition` was implemented into the account after the detected anomalous behavior, to ensure its protection.
 
 ```![screenshot](imageFolder/screenshot.png)```
 
-This log indicates that the account was flagged for potential Account Takeover (ATO) risk because multiple suspicious actions are being performed such as: 
-the account being accessed exclusively via mobile, second factor authentication configurations being actively changed during a short period of time.
+The log suggests that the account was flagged for a potential Account Takeover (ATO) risk due to multiple patterns of suspicious behavior originating 
+from IP address `200.159.9.139` within a short period of time, such as:
+
+```
+"trusted_device":false                      # Utilization of untrusted device     
+"challenge_resolution_time_in_ms":"42"      # Authentication completed in 45 ms - Indicating automation
+"scorings":{"operation":"very_high"}        # High scoring triggered by authentication being performed in 45ms
+"new_mobile_domain":true                    # Authentication by unrecognizable device
+```
 
 As a result, additional ATO protection measures were added to the account to mitigate the risk. However, as this action was taken after the acess, 
-the actor remained accessing the account and performing modifications. 
 
 
 
