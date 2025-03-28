@@ -27,11 +27,11 @@ Anomaly Detector
 ├── logs/  
 │   ├── traffic-requests.csv     # Sample of traffic request logs  
 ├── config.py                    # Configuration settings (file paths, anomaly rules)  
-├── main.py                      # Main script - Run this file  
 ├── report_format.py             # Defines report structure and formatting  
-├── signin_analysis.py           # Handles analysis of sign-in related logs  
-├── traffic_analysis.py          # Handles traffic patterns and anomalies   
+├── login_analysis.py            # Handles analysis of sign-in related logs
 ├── login_report.py              # Generates login-related reports  
+├── main.py                      # Main script - Run this file
+├── traffic_analysis.py          # Handles traffic patterns and anomalies   
 ├── traffic_report.py            # Generates web traffic-related reports  
 ```
 
