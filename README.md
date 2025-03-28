@@ -167,37 +167,37 @@ Sign-in analysis complete for user ID '41072246'.
 Processed 89/22819 events from 7 IPs.
 Found 57 unique anomaly patterns.
 
-╭─────────────────────────────────────── Anomaly Detector Report ────────────────────────────────────────╮
-│ Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                                   │
-╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────── Anomaly Detector Report ───────────────────────────────────────╮
+│  Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                                │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 --- Log Overview ---
 Total Sign-In Events Processed/Analyzed: 89
 
 --- Anomaly Report ---
 Found 57 distinct anomaly patterns across 7 unique IPs.
-╭───────────────────────────────────── IP Address: 192.168.1.3  ─────────────────────────────────────────╮
-│   Anomaly Type:       Failed Login                                                                     │
-│   Severity:           MEDIUM                                                                           │
-│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                             │
-│   User ID:            88888                                                                            │
-│   First Detected:     2025-02-22T11:38:57.390-04:00                                                    │
-│   Details:            Fail code: email                                                                 │
-│ ────────────────────────────────────────────────────────────────────────────────────────────────────── │
-│   Anomaly Type:       Failed Login                                                                     │
-│   Severity:           MEDIUM                                                                           │
-│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                             │
-│   User ID:            88888                                                                            │
-│   First Detected:     2025-02-22T11:38:57.683-04:00                                                    │
-│   Details:            Fail code: enter_password                                                        │
-│ ────────────────────────────────────────────────────────────────────────────────────────────────────── │
-│   Anomaly Type:       Failed Login                                                                     │
-│   Severity:           MEDIUM                                                                           │
-│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                             │
-│   User ID:            88888                                                                            │
-│   First Detected:     2022-02-22T11:41:53.637-04:00                                                    │
-│   Details:            Fail code: enrollment_flow                                                       │
-╰───────────────────────────────────── (8 distinct patterns found) ──────────────────────────────────────╯
+╭───────────────────────────────────── IP Address: 192.168.1.3  ─────────────────────────────────────╮
+│   Anomaly Type:       Failed Login                                                                 │
+│   Severity:           MEDIUM                                                                       │
+│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                         │
+│   User ID:            88888                                                                        │
+│   First Detected:     2025-02-22T11:38:57.390-04:00                                                │
+│   Details:            Fail code: email                                                             │
+│ ───────────────────────────────────────────────────────────────────────────────────────────────────│
+│   Anomaly Type:       Failed Login                                                                 │
+│   Severity:           MEDIUM                                                                       │
+│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                         │
+│   User ID:            88888                                                                        │
+│   First Detected:     2025-02-22T11:38:57.683-04:00                                                │
+│   Details:            Fail code: enter_password                                                    │
+│ ───────────────────────────────────────────────────────────────────────────────────────────────────│
+│   Anomaly Type:       Failed Login                                                                 │
+│   Severity:           MEDIUM                                                                       │
+│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                         │
+│   User ID:            88888                                                                        │
+│   First Detected:     2022-02-22T11:41:53.637-04:00                                                │
+│   Details:            Fail code: enrollment_flow                                                   │
+╰───────────────────────────────────── (8 distinct patterns found) ──────────────────────────────────╯
 
 Report Generation Complete.
 
