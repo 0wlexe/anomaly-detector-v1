@@ -22,8 +22,9 @@ It provides formatted console reports summarizing findings.
 ```
 Anomaly Detector
 ├── Log Analysis Report/  
-│   ├── Log Analysis Report.md   # Report on log analysis findings  
-│   ├── imgs/                    # Contains image evidence for the report  
+│   ├── Log Analysis Report.md   # Report on log analysis findings for sign-in  
+│   ├── imgs/                    # Contains image evidence for the report
+│   ├── Automated Report...      # Report on log analysis findings for traffic logs
 ├── logs/  
 │   ├── traffic-requests.csv     # Sample of traffic request logs  
 ├── config.py                    # Configuration settings (file paths, anomaly rules)  
