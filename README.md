@@ -37,7 +37,7 @@ Anomaly Detector
 
 ## Technologies Used
 
-*   **Python 3.13.2 **
+*   **Python 3.13.2**
 *   **Standard Libraries:** `csv`, `re`, `logging`, `os`, `sys`, `json`, `collections`
 *   **External Libraries:**
     *   `rich`: For console formatting.
