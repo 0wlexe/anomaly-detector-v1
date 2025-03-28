@@ -7,7 +7,7 @@ from login_report import generate_login_report
 from traffic_report import generate_traffic_report
 
 def main():
-    # Logging Format logs
+    # Format Logging
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     print("\n--- ANOMALY DETECTOR ---")
 
