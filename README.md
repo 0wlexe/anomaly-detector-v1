@@ -205,9 +205,7 @@ Report Generation Complete.
 
 ## License
 
-This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
-Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
-details.
+Anomaly Detector is licensed under the MIT license. See the [LICENSE](https://opensource.org/license/MIT) file for details.
 
 
 ## Reference
