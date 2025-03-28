@@ -16,7 +16,7 @@ def get_severity_color(severity_enum: SeverityLevel) -> str:
 
 def generate_traffic_report(analysis_results: Dict[str, Any], report_title: str):
     if analysis_results is None:
-        print("[bold red]Network analysis results object is None. Cannot generate report.[/bold red]")
+        print("[bold red]Analysis results object is None. Cannot generate report.[/bold red]")
         logging.warning("generate_traffic_report called with None results.")
         return
 
