@@ -197,7 +197,7 @@ Found 57 distinct anomaly patterns across 7 unique IPs.
 │   User ID:            88888                                                                        │
 │   First Detected:     2022-02-22T11:41:53.637-04:00                                                │
 │   Details:            Fail code: enrollment_flow                                                   │
-╰───────────────────────────────────── (8 distinct patterns found) ──────────────────────────────────╯
+╰───────────────────────────────────── (3 distinct patterns found) ──────────────────────────────────╯
 
 Report Generation Complete.
 
