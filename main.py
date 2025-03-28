@@ -2,7 +2,7 @@ import os, sys, logging
 from rich import print
 from config import FULL_TRAFFIC_LOG_PATH, FULL_LOGIN_LOG_PATH, ANOMALY_RULES
 from traffic_analysis import analyze_traffic_logs  
-from signin_analysis import analyze_login_logs 
+from login_analysis import analyze_login_logs 
 from login_report import generate_login_report
 from traffic_report import generate_traffic_report
 
