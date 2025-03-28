@@ -163,7 +163,7 @@ Enter the specific 'transaction_user_id' to analyze (Required): 88888
 Filtering analysis for user ID: 88888
 
 Starting analysis of 'login_logs.csv'...
-Sign-in analysis complete for user ID '41072246'.
+Sign-in analysis complete for user ID '88888'.
 Processed 89/22819 events from 7 IPs.
 Found 57 unique anomaly patterns.
 
