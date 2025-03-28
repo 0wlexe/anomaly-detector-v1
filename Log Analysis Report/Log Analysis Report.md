@@ -5,7 +5,6 @@ The objective of this report is to compile relevant information and identify pat
 ## Log Overview
   - **Transaction account ID:** `41072246`
   - **Date Range of the logs:** `2022-12-11 21:55 - 2022-12-27 17:00`
-  - **Total Log Entries Analyzed:** `89`
 
 ## Analysis Methodology
 
@@ -31,7 +30,7 @@ suspicious change in the service level.
 
 A security measurement `ato_protection_addition` was implemented into the account after the detected anomalous behavior, to ensure its protection.
 
-```![screenshot](imageFolder/screenshot.png)```
+![screenshot](imgs/03_ato_protection.png)
 
 The log suggests that the account was flagged for a potential Account Takeover (ATO) risk due to multiple patterns of suspicious behavior originating 
 from IP address `200.159.9.139` within a short period of time, such as:
@@ -43,58 +42,50 @@ from IP address `200.159.9.139` within a short period of time, such as:
 "new_mobile_domain":true                    # Authentication by unrecognizable device
 ```
 
-As a result, additional ATO protection measures were added to the account to mitigate the risk. However, as this action was taken after the acess, 
+As a result, additional ATO protection measures were added to the account to mitigate the risk. However, it was not as efficient to stop the pattern 
+of automated actions from happening. 
 
+By analyzing the 'data' field of the log, multiple `completed_elements` entries were identified. These indicate a possible movimentation from the 
+actor through the manipulation of the account settings, indicating successful authentication possibly bypassing MFA steps. 
 
+```
+"completed_elements":["enter_password"]                       # Password authentication 
+"completed_elements":['face_validation', 'enter_password']    # Authentication using both password and face validation
+"completed_elements":['face_validation']                      # Authentication no longer requires password, only face validation. 
+```
 
-Multiple `transaction_score` events were flagged with abuse scoring. This suggests the transaction is being flagged as potentially abusive. 
+Multiple `transaction_score` events were flagged with an abuse scoring indicator, suggesting that although the actor may have successfully bypassed authentication methods, the transaction was still identified as potentially fraudulent or abusive based on its risk characteristics.
 
-```![screenshot](imageFolder/screenshot.png)```
+![screenshot](imgs/04_transaction_abuse.png)
 
-Multiple accesses being performed by untrusted devices. 
+### 2. Detected Ip Addresses and paterns of Anomalous Behavior
 
-```![screenshot](imageFolder/screenshot.png)```
+Other than IP address `200.159.9.139`, the following IP addresses also demonstrated patterns of suspicious activity for this account:
 
+| IP Address 	        | Occurrences 	| First Seen 	            | Last Seen 	            | Client Type   |
+|:---------------:	  |:-----------:	|:-------------------:	  |:-------------------:	  |:-----------:	|
+| `189.201.235.176` 	| 20 	          | `2022-12-24 08:17`      | `2022-12-24 08:13` 	    | mobile     	  |
+| `200.159.9.139` 	  | 18 	          | `2022-12-11 21:58`      | `2022-12-11 21:55`      | mobile 	      |
+| `189.201.234.220` 	| 14 	          | `2022-12-24 07:39`  	  | `2022-12-24 07:38`   	  | mobile 	      |
+| `189.96.19.153` 	  | 6 	          | `2022-12-23 17:48`      | `2022-12-23 17:48`      | mobile 	      |
+| `189.201.235.241` 	| 6 	          | `2022-12-27 13:15`      | `2022-12-27 07:22`   	  | mobile 	      |
+| `189.201.235.131` 	| 6 	          | `2022-12-22 13:36`   	  | `2022-12-22 13:36`   	  | mobile 	      |
+| `189.201.234.8` 	  | 5 	          | `2022-12-21 08:31`      | `2022-12-21 08:31`     	| mobile 	      |
 
-### 2. IP Activity
+This section summarizes anomalous behavior identified by source IP address. The table quantifies specific suspicious events and lists potential attack patterns inferred from the combined activity.
 
-Multiple IP addresses were identified accessing the account, making multiple requests per day. 
-  
-| IP Address 	      | Occurrences 	| First Seen 	          | Last Seen 	          | Client Type   |
-|:---------------:	|:-----------:	|:-------------------:	|:-------------------:	|:-----------:	|
-| 189.201.235.176 	| 20 	          | 2022-02-22 12:12:54 	| 2022-02-22 12:17:33 	| mobile     	  |
-| 200.159.9.139 	  | 18 	          | 2022-02-22 01:55:22 	| 2022-02-22 01:58:15 	| mobile 	      |
-| 189.201.234.220 	| 14 	          | 2022-02-22 11:38:57 	| 2022-02-22 11:41:53 	| mobile 	      |
-| 189.96.19.153 	  | 6 	          | 2022-02-22 21:48:03 	| 2022-02-22 21:48:41 	| mobile 	      |
-| 189.201.235.241 	| 6 	          | 2022-02-22 11:22:35 	| 2022-02-22 11:23:13 	| mobile 	      |
-| 189.201.235.131 	| 6 	          | 2022-02-22 17:36:23 	| 2022-02-22 17:36:58 	| mobile 	      |
-| 189.201.234.8 	  | 5 	          | 2022-02-22 12:31:26 	| 2022-02-22 12:31:26 	| mobile 	      |
+| IP Address           | Untrusted Devices | Face Validation | New Mobile Domain | Mobile Access | Declined Elements | Potential Attack Patterns                                                                                                |
+| :------------------ | :---------------- | :-------------- | :---------------- | :------------ | :---------------- | :--------------------------------------------------------------------------------------------------------------------- |
+| `189.96.19.153`     | 5                 | 2               | 6                 | 6             | 1                 | _None Detected_                                                                                                        |
+| `200.159.9.139`     | 13                | 4               | 18                | 18            | 5                 | Brute Force/Credential Stuffing<br>Anomalous Behavior/Potential Account Takeover<br>|
+| `nan`               | -                 | -               | -                 | -             | -                 | _None Detected / Missing Data_                                                                                         |
+| `189.201.235.241`   | 12                | 2               | 6                 | 6             | 7                 | Brute Force/Credential Stuffing                                                                                        |
+| `189.201.235.131`   | 5                 | 2               | 6                 | 6             | 1                 | _None Detected_                                                                                                        |
+| `189.201.235.176`   | 14                | 2               | 20                | 20            | 13                | Brute Force/Credential Stuffing<br>Anomalous Behavior/Potential Account Takeover                                    |
+| `189.201.234.8`     | 1                 | -               | 5                 | 5             | 4                 | _None Detected_                                                                                                        |
+| `189.201.234.220`   | 10                | 2               | 14                | 14            | 9                 | Brute Force/Credential Stuffing<br>Anomalous Behavior/Potential Account Takeover                                    |
 
-Analysis of Anomalous Behavior and Potential Attack Patterns:
-
-#### IP Address: 200.159.9.139
-  -  Exhibited alarming suspicious patterns such as:
-     - Face validation requested 4 times.
-```![screenshot](imageFolder/screenshot.png)```
-
-
-     - Access from untrusted device(s) on 13 occurences.
-     - Access from new mobile domain detected 18 times.
-     - By extracting from the ‘data’ field of the log, multiple completed elements were identified, these are indicators that the actor was successful at authenticating in the account with only password, then authenticating with face validation and password, and finally only authenticating only with face validation.
-```![screenshot](imageFolder/screenshot.png)```
-
-     - The requisitions from this IP address are made within seconds from 21:55 to 21:58, which presents automated behavior.
-     - From 21:55 to 21:56 - The account was given additional protection to account takeover due to the detected behavior from this IP address, as presented below. 
-```![screenshot](imageFolder/screenshot.png)```
-
-
-  - Potential attack patterns:
-    - **Potential Brute-Force/Credential Stuffing Attack:** Multiple failed face validation attempts combined with high-risk operations suggest an attacker trying various credentials.
-    - **Anomalous Activity and Compromised Device (Anomalous Behavior):** The 'app_sl_change_anom' event combined with an untrusted device might indicate a compromised device attempting unauthorized actions.
-    - **Settings Tampering (Anomalous Behavior):** The `app_sl_change_anom` events was triggered by this IP address, and shows the the settings migh have been tampered.
-
-#### IP Address: 189.201.234.220
-
+---
 
 
 ### 3. Final considerations, and mitigation points. 
