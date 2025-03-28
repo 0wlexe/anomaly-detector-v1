@@ -1,60 +1,60 @@
 # Anomaly Detector
 
 This is a project for a Challenge.
-The objective is to create an application that works as a prototype of a Security Information and Event Management (SIEM) to agilize in the analysis of traffic logs, and obtain patterns of anomalous behavior from users. 
+
+'Anomaly Detector' is a Python-based tool designed to analyze network traffic and sign-in log files to detect suspicious patterns and potential security anomalies. 
+It provides formatted console reports summarizing findings.
 
 ## Table of Contents
 
 1.  [Project Overview](#Anomaly-Detector)
-2.  [Requirements](#Requirements)
-3.  [Usage](#Usage)
-4.  [Project Structure](#Project-Structure)
-5.  [Anomaly Detection Rules](#Anomaly-Detection-Rules)
+2.  [Project Structure](#Project-Structure)
+3.  [Technologies Used](#Technologies-Used)
+4.  [Usage](#Usage)
+6.  [Anomaly Detection Rules](#Anomaly-Detection-Rules)
 7.  [Report Output](#Report-output)
-8.  [CSV File Format](#CSV-File-Format)
 10. [License](#License)
 11. [Reference](#Reference)
    
 
-## Requirements
-
-  - This project was build using Python 3.13.2.
-  - Requirements are built-in Python modules (no need to install separately):
-```
-    os
-    sys
-    re
-    csv
-    logging
-    collections (Counter)
-    enum (Enum)
-    typing (List, Dict)
- ```   
-- External dependencies that require installation:
- ```  
-    rich → For enhanced console output
- ```  
-
-## Usage
-
-1. To execute the Anomaly Detector, open a terminal or command prompt.
-2. Navigate to the directory where you saved the Python files.
-3. Run the `main.py` script, providing the CSV filename as a command-line argument:
-
-  ```bash
-  python main.py your_traffic_logs.csv
-  ```
-If you encounter issues, ensure the CSV file is in the same directory as main.py, or provide the full path to the file such as `username/directory/your_traffic_logs.csv`.
-
 ## Project Structure
 
 ```
-Anomaly_detector/
-├── config.py           # Configuration settings (file paths, anomaly rules)
-├── log_analyzer.py     # Log analysis logic
-├── report_generator.py # Report generation using rich
-└── main.py             # Main script - orchestrates analysis
+Anomaly Detector
+├── Log Analysis Report/  
+│   ├── Log Analysis Report.md   # Report on log analysis findings  
+│   ├── imgs/                    # Contains image evidence for the report  
+├── logs/  
+│   ├── traffic-requests.csv     # Sample of traffic request logs  
+├── config.py                    # Configuration settings (file paths, anomaly rules)  
+├── main.py                      # Main script - Run this file  
+├── report_format.py             # Defines report structure and formatting  
+├── signin_analysis.py           # Handles analysis of sign-in related logs  
+├── traffic_analysis.py          # Handles traffic patterns and anomalies   
+├── login_report.py              # Generates login-related reports  
+├── traffic_report.py            # Generates web traffic-related reports  
 ```
+
+## Technologies Used
+
+*   **Python 3.x**
+*   **Standard Libraries:** `csv`, `re`, `logging`, `os`, `sys`, `json`, `collections`
+*   **External Libraries:**
+    *   `rich`: For console formatting.
+
+## Usage
+
+1.  Navigate to the project directory in your terminal.
+2.  Ensure your log files (`.csv` format) are accessible.
+3.  Run the main script:
+    ```bash
+    python main.py
+    ```
+4.  **Follow the prompts:**
+    *   Select the analysis type (1 for Traffic, 2 for Sign-In).
+    *   Enter the name or full path to the relevant log file (`.csv`).
+    *   If you selected Sign-In analysis, you **must** enter the specific `transaction_user_id` you want to analyze.
+5.  The analysis results will be printed to the console using formatted tables and panels.
 
 ## Anomaly Detection Rules
 Anomaly detection is performed by matching regular expressions defined in the `ANOMALY_RULES` list in `config.py`. These rules can be customized to detect specific patterns in log data that are not usual for users. 
@@ -65,92 +65,143 @@ For this project, common web attack types should be filtered such as:
 - XSS
 - Command_Injection
 - Privilege_Escalation
-- Unknown (For actions that may not present explicit malicious indicators)
+
+Sign-in module also counts with the following detections for anomalous behavior:
+- Unknown (For generic traffic actions)
+- Multiple Failed Login attempts
+- Logins by untrusted device
+- Risky reauthentication
+- Suspicious Fields (For unusual patterns)
 
  Review `Anomaly_detector/config.py` for examples.
  
 ## Report Output
 
-The script generates a report to the console with the following sections:
+The script generates a report in accordance to the selected prompt.
+
+```
+--- ANOMALY DETECTOR ---
+
+What type of log would you like to analyze?
+  1. Web traffic logs
+  2. Sign-In Logs
+```
+
+### For Web Traffic Logs
 
 *   **Log Overview**: Provides a summary of the log data, including the total number of requests, failed requests, and successful requests.
 *   **Anomaly Report**: Lists any anomalies detected in the log data, including their type, severity, and associated details.
-*   **HTTP Request Summary**: Contains two tables: a "Failed Requests" table containing HTTP requests with an error 500, and a "Successful Requests" table containing entries that got accepted.
-Each table shows: Times, User ID, Remote Addr, Request URI, Status User Agent, Request Method
 
 ```
-╭────────────────────────────────────────────────── Anomaly Detector Report ──────────────────────────────────────────────────╮
-│ Traffic Log Analysis Report                                                                                                 │
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Selected: Traffic Analysis.
+Enter path to the traffic log file (e.g., traffic_logs.csv):
+
+Selected: Traffic Analysis.
+Enter path to the traffic log file (e.g., traffic_logs.csv): log_sample.csv
+Using log file: log_sample.csv
+
+Starting analysis of 'log_sample.csv'...
+2025-03-27 22:53:22,414 - INFO - Traffic analysis complete. Processed 3 requests. Found 2 anomaly events.
+Analysis complete. Generating report...
+╭────────────────────────────────────── Anomaly Detector Report ───────────────────────────────────────╮
+│ Traffic Log Analysis Report (Traffic Analysis)                                                       │
+╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 --- Log Overview ---
-Total Requests: 3
-Failed Requests: 1
-Successful Requests: 2
+Total Traffic Events Processed: 17036
+HTTP Status >= 400: 493
+HTTP Status 200: 15763
+
+Request Method Counts:
+  - GET: 10016
+  - POST: 5476
+  - OPTIONS: 1112
+  - PUT: 417
+  - DELETE: 15
 
 --- Anomaly Report ---
-╭──────────────────────────────────────────── Potential Command Injection Attack ─────────────────────────────────────────────╮
-│ ┌────────────────┬────────────────────────────────────┐                                                                     │
-│ │ Type           │ Potential Command Injection Attack │                                                                     │
-│ │ User Id        │ user456                            │                                                                     │
-│ │ Request Uri    │ /admin?id=1;DROP TABLE users;      │                                                                     │
-│ │ Time           │ 2025-03-22 10:00:10                │                                                                     │
-│ │ Remote Addr    │ 0.0.0.0                            │                                                                     │
-│ │ Status         │ 500                                │                                                                     │
-│ │ Request Method │ GET                                │                                                                     │
-│ │ Severity       │ LOW                                │                                                                     │
-│ │ Attack Types   │ COMMAND_INJECTION                  │                                                                     │
-│ └────────────────┴────────────────────────────────────┘                                                                     │
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
-╭─────────────────────────────────────────────────── Bot Activity Detected ───────────────────────────────────────────────────╮
-│ ┌─────────────────┬───────────────────────┐                                                                                 │
-│ │ Type            │ Bot Activity Detected │                                                                                 │
-│ │ User Id         │ bot789                │                                                                                 │
-│ │ Http User Agent │ Googlebot             │                                                                                 │
-│ │ Time            │ 2025-03-22 10:00:10   │                                                                                 │
-│ │ Remote Addr     │ 0.0.0.0               │                                                                                 │
-│ │ Status          │ 200                   │                                                                                 │
-│ │ Request Method  │ GET                   │                                                                                 │
-│ │ Severity        │ LOW                   │                                                                                 │
-│ │ Attack Types    │ UNKNOWN               │                                                                                 │
-│ └─────────────────┴───────────────────────┘                                                                                 │
-╰─────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+Found 22 potential anomaly events.
 
---- Failed Requests ---
-┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┓        
-┃ Time                ┃ User ID ┃ Remote Addr ┃ Request URI                   ┃ Status ┃ User Agent  ┃ Request Method ┃        
-┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━┩        
-│ 2025-03-22 10:00:10 │ user456 │ 0.0.0.0     │ /admin?id=1;DROP TABLE users; │ 500    │ Mozilla/5.0 │ GET            │        
-└─────────────────────┴─────────┴─────────────┴───────────────────────────────┴────────┴─────────────┴────────────────┘        
+╭───────── Potential Command Injection Attack ──────────╮
+│  Time                  2023-11-16 10:00:05            │
+│  User ID               user456                        │
+│  Method                GET                            │
+│  Status                500                            │
+│  Request URI           /admin?id=1;DROP TABLE users;  │
+│  Http User Agent       Mozilla/5.0                    │
+│  Matched Pattern       (;.*)                          │
+│  Severity              HIGH                           │
+│  Attack Types          COMMAND_INJECTION              │
+╰──────────── IP: 192.168.1.2 | Log Row: ~2 ────────────╯
 
---- Successful Requests ---
-┏━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━┳━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━┓
-┃ Time                ┃ User ID ┃ Remote Addr ┃ Request URI ┃ Status ┃ User Agent  ┃ Request Method ┃
-┡━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━╇━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━┩
-│ 2025-03-22 10:00:00 │ user123 │ 0.0.0.0     │ /index.html │ 200    │ Mozilla/5.0 │ GET            │
-│ 2025-03-22 10:00:10 │ bot789  │ 0.0.0.0     │ /products   │ 200    │ Googlebot   │ GET            │
-└─────────────────────┴─────────┴─────────────┴─────────────┴────────┴─────────────┴────────────────┘
+╭────────────────── Bot Activity Detected (UA Based) ───────────────────╮
+│  Time                  2023-11-16 10:00:10                            │
+│  User ID               bot789                                         │
+│  Method                GET                                            │
+│  Status                200                                            │
+│  Request URI           /products                                      │
+│  Http User Agent       Googlebot                                      │
+│  Matched Pattern       (?i)(bot|crawler|spider|scan|agent|curl|wget)  │
+│  Severity              LOW                                            │
+│  Attack Types          UNKNOWN                                        │
+╰──────────────────── IP: 192.168.1.3 | Log Row: ~3 ────────────────────╯
+
+Report Generation Complete.
+
 ```
 
-## CSV File Format
-The CSV file should have a header row with the following column names (case-sensitive):
+### For Sign-in Logs
 
-*   `user_id`
-*   `time`
-*   `proxy_host`
-*   `hostname`
-*   `status`
-*   `http_host`
-*   `request_uri`
-*   `server_protocol`
-*   `request_method`
-*   `request_time`
-*   `request_length`
-*   `bytes_sent`
-*   `http_referer`
-*   `http_user_agent`
-*   (Other columns are permitted, but these are the ones actively analyzed)
+*   **Log Overview**: Shows the total number of sign-in events processed, reflecting any user ID filtering applied during the analysis.
+*   **Anomaly Report**: Groups findings by IP address. For each IP address associated with anomalies, an expandable panel is displayed. Inside the panel, each distinct anomaly pattern detected for that IP is listed sequentially as a formatted text block, showing: Anomaly Type,Attack Types, User ID and detected patterns of anomalous behavior.  
 
+```
+Selected: Sign-In Analysis.
+Enter path to the signin log file (e.g., signin_logs.csv): login_logs.csv
+Using log file: login_logs.csv
+Enter the specific 'transaction_user_id' to analyze (Required): 88888
+Filtering analysis for user ID: 88888
+
+Starting analysis of 'login_logs.csv'...
+Sign-in analysis complete for user ID '41072246'.
+Processed 89/22819 events from 7 IPs.
+Found 57 unique anomaly patterns.
+
+╭─────────────────────────────────────── Anomaly Detector Report ────────────────────────────────────────╮
+│ Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                                   │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────────╯
+
+--- Log Overview ---
+Total Sign-In Events Processed/Analyzed: 89
+
+--- Anomaly Report ---
+Found 57 distinct anomaly patterns across 7 unique IPs.
+╭───────────────────────────────────── IP Address: 192.168.1.3  ─────────────────────────────────────────╮
+│   Anomaly Type:       Failed Login                                                                     │
+│   Severity:           MEDIUM                                                                           │
+│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                             │
+│   User ID:            88888                                                                            │
+│   First Detected:     2025-02-22T11:38:57.390-04:00                                                    │
+│   Details:            Fail code: email                                                                 │
+│ ────────────────────────────────────────────────────────────────────────────────────────────────────── │
+│   Anomaly Type:       Failed Login                                                                     │
+│   Severity:           MEDIUM                                                                           │
+│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                             │
+│   User ID:            88888                                                                            │
+│   First Detected:     2025-02-22T11:38:57.683-04:00                                                    │
+│   Details:            Fail code: enter_password                                                        │
+│ ────────────────────────────────────────────────────────────────────────────────────────────────────── │
+│   Anomaly Type:       Failed Login                                                                     │
+│   Severity:           MEDIUM                                                                           │
+│   Attack Types:       FAILED_LOGIN_ATTEMPT                                                             │
+│   User ID:            88888                                                                            │
+│   First Detected:     2022-02-22T11:41:53.637-04:00                                                    │
+│   Details:            Fail code: enrollment_flow                                                       │
+╰───────────────────────────────────── (8 distinct patterns found) ──────────────────────────────────────╯
+
+Report Generation Complete.
+
+```
 
 ## License
 
@@ -158,7 +209,7 @@ This project is licensed under the [CC0 1.0 Universal](LICENSE.md)
 Creative Commons License - see the [LICENSE.md](LICENSE.md) file for
 details.
 
-    
+
 ## Reference
 This project was inspired by the following guides and open source solutions:
  - [Create a Python SIEM System Using AI and LLMs for Log Analysis and Anomaly Detection](https://www.freecodecamp.org/news/how-to-create-a-python-siem-system-using-ai-and-llms/) by Chaitanya Rahalkar;
