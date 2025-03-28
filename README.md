@@ -1,7 +1,5 @@
 # Anomaly Detector
 
-This is a project for a Challenge.
-
 'Anomaly Detector' is a Python-based tool designed to analyze network traffic and sign-in log files to detect suspicious patterns and potential security anomalies. 
 It provides formatted console reports summarizing findings.
 
@@ -21,17 +19,14 @@ It provides formatted console reports summarizing findings.
 
 ```
 Anomaly Detector
-├── Log Analysis Report/  
-│   ├── Log Analysis Report.md   # Report on log analysis findings  
-│   ├── imgs/                    # Contains image evidence for the report  
 ├── logs/  
 │   ├── traffic-requests.csv     # Sample of traffic request logs  
 ├── config.py                    # Configuration settings (file paths, anomaly rules)  
-├── main.py                      # Main script - Run this file  
 ├── report_format.py             # Defines report structure and formatting  
-├── signin_analysis.py           # Handles analysis of sign-in related logs  
-├── traffic_analysis.py          # Handles traffic patterns and anomalies   
+├── login_analysis.py            # Handles analysis of sign-in related logs
 ├── login_report.py              # Generates login-related reports  
+├── main.py                      # Main script - Run this file
+├── traffic_analysis.py          # Handles traffic patterns and anomalies   
 ├── traffic_report.py            # Generates web traffic-related reports  
 ```
 
@@ -168,7 +163,7 @@ Processed 89/22819 events from 7 IPs.
 Found 57 unique anomaly patterns.
 
 ╭────────────────────────────────────── Anomaly Detector Report ────────────────────────────────────╮
-│  Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                             │
+│  Sign-In Log Analysis Report for User ID: 88888(Sign-In Analysis)                                 │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 --- Log Overview ---

@@ -7,7 +7,7 @@ from login_report import generate_login_report
 from traffic_report import generate_traffic_report
 
 def main():
-    # Logging Format logs
+    # Format Logging
     logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
     print("\n--- ANOMALY DETECTOR ---")
 
@@ -32,7 +32,7 @@ def main():
         report_title = "Traffic Log Analysis Report"
         args = [ANOMALY_RULES]; sugg_fname = os.path.basename(FULL_TRAFFIC_LOG_PATH)
         print(f"\nSelected: Traffic Analysis.")
-    else: # Gather data from signin analysis and generate a report
+    else: # Gather data from login_analysis and generate a report
         analysis_func = analyze_login_logs
         report_func = generate_login_report # Use login report func
         report_title = "Sign-In Log Analysis Report"
