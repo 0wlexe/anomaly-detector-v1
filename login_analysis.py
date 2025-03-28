@@ -3,7 +3,7 @@ from collections import Counter, defaultdict
 from typing import Dict, List, Set, Tuple, Any, Optional
 from config import SeverityLevel, AttackType
 
-# Format Logs
+# Format Logging
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s')
 
 SIGNIN_LOG_FIELDS = {
