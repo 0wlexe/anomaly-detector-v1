@@ -88,7 +88,7 @@ This section summarizes anomalous behavior identified by source IP address. The 
 ---
 
 
-### 3. Final considerations, and mitigation points. 
+### 3. Final considerations and mitigation points. 
 Given the potential attack and the way it has escalonated with multiple suspicious IP addresses, it's secure to gather it as evidence that the security controls might not have
 been strong enough for that account. Making it necessary to increase authentication requirements if access patterns appear suspicious.
 
