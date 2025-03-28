@@ -103,9 +103,9 @@ Using log file: log_sample.csv
 Starting analysis of 'log_sample.csv'...
 2025-03-27 22:53:22,414 - INFO - Traffic analysis complete. Processed 3 requests. Found 2 anomaly events.
 Analysis complete. Generating report...
-╭────────────────────────────────────── Anomaly Detector Report ───────────────────────────────────────╮
-│ Traffic Log Analysis Report (Traffic Analysis)                                                       │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────── Anomaly Detector Report ─────────────────────────────────────╮
+│ Traffic Log Analysis Report (Traffic Analysis)                                                     │
+╰────────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 --- Log Overview ---
 Total Traffic Events Processed: 17036
@@ -167,9 +167,9 @@ Sign-in analysis complete for user ID '41072246'.
 Processed 89/22819 events from 7 IPs.
 Found 57 unique anomaly patterns.
 
-╭────────────────────────────────────── Anomaly Detector Report ───────────────────────────────────────╮
-│  Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                                │
-╰──────────────────────────────────────────────────────────────────────────────────────────────────────╯
+╭────────────────────────────────────── Anomaly Detector Report ────────────────────────────────────╮
+│  Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                             │
+╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 --- Log Overview ---
 Total Sign-In Events Processed/Analyzed: 89
