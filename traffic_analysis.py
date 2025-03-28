@@ -10,8 +10,8 @@ ESSENTIAL_TRAFFIC_FIELDS = {'request_uri', 'http_user_agent', 'status', 'remote_
 TRAFFIC_LOG_FIELDS = [
     'user_id', 'time', 'proxy_host', 'status', 'http_host', 'request_uri', 'server_protocol',
     'request_method', 'request_time', 'http_referer', 'http_user_agent', 'http_x_public', 'http_x_request_id', 'http_connection',
-    'http_accept_encoding', 'http_accept', 'http_content_type','remote_addr',
-    'sent_http_connection', 'sent_http_location', 'sent_http_content_encoding', 'upstream_status','connection', 'connection_requests', 'source_ip'
+    'http_accept_encoding', 'http_accept', 'http_content_type','remote_addr','sent_http_connection', 'sent_http_location',
+    'sent_http_content_encoding', 'upstream_status','connection', 'connection_requests', 'source_ip'
 ]
 
 # Gather anomalies
@@ -54,7 +54,7 @@ def analyze_traffic_logs(log_file_path: str, anomaly_rules: List[Dict]) -> Dict[
 
                 for rule in anomaly_rules:
                     triggered = False
-                    # Base details - Start with essential fields for the report
+                    # Base details - Starts with essential fields for the report
                     anomaly_details = {
                         'ip': remote_ip, 'time': request_data.get('time'),
                         'user_id': request_data.get('user_id'), 'status': status,
@@ -94,9 +94,4 @@ def analyze_traffic_logs(log_file_path: str, anomaly_rules: List[Dict]) -> Dict[
 
     logging.info(f"Traffic analysis complete. Processed {total_requests} requests. Found {len(anomalies)} anomaly events.")
 
-    return {
-        'data_counters': data_counters,
-        'anomalies': anomalies,
-        'total_requests': total_requests,
-        'analysis_type': 'Traffic Analysis'
-    }
+    return {'data_counters': data_counters,'anomalies': anomalies,'total_requests': total_requests, 'analysis_type': 'Traffic Analysis'}
