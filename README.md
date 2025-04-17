@@ -1,7 +1,5 @@
 # Anomaly Detector
 
-This is a project for a Challenge.
-
 'Anomaly Detector' is a Python-based tool designed to analyze network traffic and sign-in log files to detect suspicious patterns and potential security anomalies. 
 It provides formatted console reports summarizing findings.
 
@@ -21,10 +19,6 @@ It provides formatted console reports summarizing findings.
 
 ```
 Anomaly Detector
-├── Log Analysis Report/  
-│   ├── Log Analysis Report.md   # Report on log analysis findings for sign-in  
-│   ├── imgs/                    # Contains image evidence for the report
-│   ├── Automated Report...      # Report on log analysis findings for traffic logs
 ├── logs/  
 │   ├── traffic-requests.csv     # Sample of traffic request logs  
 ├── config.py                    # Configuration settings (file paths, anomaly rules)  
