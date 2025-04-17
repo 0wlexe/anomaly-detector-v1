@@ -163,7 +163,7 @@ Processed 89/22819 events from 7 IPs.
 Found 57 unique anomaly patterns.
 
 ╭────────────────────────────────────── Anomaly Detector Report ────────────────────────────────────╮
-│  Sign-In Log Analysis Report for User ID: 41072246 (Sign-In Analysis)                             │
+│  Sign-In Log Analysis Report for User ID: 88888(Sign-In Analysis)                                 │
 ╰───────────────────────────────────────────────────────────────────────────────────────────────────╯
 
 --- Log Overview ---
